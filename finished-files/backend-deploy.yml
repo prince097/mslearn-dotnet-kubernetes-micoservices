@@ -2,9 +2,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pizzabackend #default dns name
+  name: pizzabackend-deployment
+  labels:
+    app: pizzabackend
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: pizzabackend
   template:
     metadata:
       labels:
@@ -12,7 +17,7 @@ spec:
     spec:
       containers:
       - name: pizzabackend
-        image: [YOUR DOCKER USERNAME]]/pizzabackend:latest
+        image: prince009977/pizzabackend  
         ports:
         - containerPort: 80
         env:
